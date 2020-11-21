@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ShopApp.Core.Models;
+using ShopApp.Core.ViewModels;
 using ShopApp.DataAcces.InMemory;
 
 namespace ShopApp.WebUI.Controllers
@@ -12,10 +13,12 @@ namespace ShopApp.WebUI.Controllers
     {
 
         ProductRepository context;
+        ProductCategoryRepository productCategories;
 
         public ProductManagerController()
         {
             context = new ProductRepository();
+            productCategories = new ProductCategoryRepository();
         }
 
         
@@ -29,8 +32,13 @@ namespace ShopApp.WebUI.Controllers
 
         public ActionResult Create()
         {
-            Product product = new Product();
-            return View(product);
+
+            ProductManagerViewModel viewModel = new ProductManagerViewModel();
+
+
+            viewModel.Product  = new Product();
+            viewModel.ProductCategories = productCategories.Collection();
+            return View(viewModel);
         }
 
 
@@ -59,7 +67,10 @@ namespace ShopApp.WebUI.Controllers
             }
             else
             {
-                return View(product);
+                ProductManagerViewModel viewModel = new ProductManagerViewModel();
+                viewModel.Product = product;
+                viewModel.ProductCategories = productCategories.Collection();
+                return View(viewModel);
             }
         }
 
