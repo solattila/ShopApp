@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ShopApp.Core.Models
 {
-    public class Product
+    public class Product : BaseEntity
     {
         public string Id { get; set; }
 
@@ -22,10 +22,10 @@ namespace ShopApp.Core.Models
         public string Category { get; set; }
         public string Image { get; set; }
 
-        public Product()
+        /*public Product()
         {
             this.Id = Guid.NewGuid().ToString();
 
-        }
+        }*/
     }
 }

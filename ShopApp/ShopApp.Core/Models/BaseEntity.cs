@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace ShopApp.Core.Models
 {
-    public class ProductCategory : BaseEntity
+    public class BaseEntity
     {
-
         public string Id { get; set; }
-        public string Category { get; set; }
+        public DateTimeOffset CreatedAt { get; set; }
 
-        /*public ProductCategory()
+        public BaseEntity()
         {
             this.Id = Guid.NewGuid().ToString();
-        }*/
+            this.CreatedAt = DateTime.Now;
+        }
 
     }
 }
